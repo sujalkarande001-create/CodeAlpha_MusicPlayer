@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="bg" aria-hidden="true"></div>
+
+    <main class="layout">
+        <aside class="sidebar glass" aria-label="Playlist">
+            <div class="sidebar__top">
+                <h1 class="brand"> Music Player</h1>
+                <div class="search">
+                    <input id="playlistSearch" type="search" placeholder="Search songs..." autocomplete="off" />
+                    <button id="clearSearch" class="icon-btn" type="button" aria-label="Clear search">✕</button>
+                </div>
+            </div>
+
+            <div class="playlist" id="playlist"></div>
+
+            <div class="sidebar__hint">
+                <span>Tip:</span> Use <kbd>Space</kbd> play/pause, <kbd>←</kbd>/<kbd>→</kbd> next/prev.
+            </div>
+        </aside>
+
+        <section class="player glass" aria-label="Player">
+            <header class="now-playing">
+                <div class="art-wrap">
+                    <div class="art-ring" id="artRing" aria-hidden="true"></div>
+                    <img id="albumArt" class="album-art" alt="Album art" src="https://flxt.tmsimg.com/assets/p10045117_p_v10_ab.jpg" />
+                </div>
+
+                <div class="meta">
+                    <div class="track" id="trackTitle">—</div>
+                    <div class="artist" id="trackArtist">—</div>
+                    <div class="badges" aria-hidden="true">
+                        <span class="badge" id="shuffleBadge">Shuffle: Off</span>
+                        <span class="badge" id="repeatBadge">Repeat: None</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="controls">
+                <div class="row">
+                    <button id="prevBtn" class="ctrl" type="button" aria-label="Previous">⏮</button>
+                    <button id="playBtn" class="ctrl primary" type="button" aria-label="Play">▶</button>
+                    <button id="pauseBtn" class="ctrl" type="button" aria-label="Pause" disabled>⏸</button>
+                    <button id="nextBtn" class="ctrl" type="button" aria-label="Next">⏭</button>
+                </div>
+
+                <div class="progress-block">
+                    <div class="time">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
+                    </div>
+                    <div class="progress">
+                        <input id="progressBar" type="range" min="0" max="1000" step="1" value="0" aria-label="Seek" />
+                        <div class="progress-track" aria-hidden="true">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row--small">
+                    <div class="toggle-group">
+                        <button id="shuffleBtn" class="pill" type="button" aria-pressed="false">🔀 Shuffle</button>
+                        <button id="repeatBtn" class="pill" type="button" aria-pressed="false">🔁 Repeat: None</button>
+                    </div>
+
+                    <div class="volume">
+                        <button id="muteBtn" class="icon-btn" type="button" aria-label="Mute">🔊</button>
+                        <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualizer glass" aria-label="Audio visualizer">
+                <div class="visualizer__head">
+                    <span>Visualizer</span>
+                    <div class="bars-meta">Audio reactive bars</div>
+                </div>
+                <div class="bars" id="bars" aria-hidden="true"></div>
+            </div>
+
+            <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+        </section>
+    </main>
+
+    <noscript>This app requires JavaScript.</noscript>
+    <script src="script.js"></script>
+</body>
+
+</html>
